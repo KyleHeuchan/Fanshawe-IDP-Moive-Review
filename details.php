@@ -1,15 +1,12 @@
 <?php require_once('admin/scripts/read.php');
-if(isset($_GET['filter'])){
+if(isset($_GET['id'])){
 	$tbl = 'tbl_movies';
-	$tbl_2 = 'tbl_genre';
-	$tbl_3 = 'tbl_mov_genre';
 	$col = 'movies_id';
-	$col_2 = 'genre_id';
-	$col_3 = 'genre_name';
-	$filter = $_GET['filter'];
-	$results = filterResults($tbl,$tbl_2,$tbl_3,$col,$col_2,$col_3,$filter);
+	$id = $_GET['id'];
+	$results = getSingle($tbl,$col,$id);	
 }else{
-	$results = getAll('tbl_movies');
+	echo 'Missing Movie ID';
+	exit;
 }
 ?>
 
@@ -17,7 +14,7 @@ if(isset($_GET['filter'])){
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Movie Review</title>
+	<title>Movie Details</title>
 </head>
 <body>
 	<header>
@@ -30,10 +27,10 @@ if(isset($_GET['filter'])){
 		</nav>
 	</header>
 
-<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
+	<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
 		<div>
-			<h2><?php echo $row['movies_title'];?></h2>
-			<p><?php echo $row['movies_year'];?></p>
+			<h2>Movie Title: <?php echo $row['movies_title'];?></h2>
+			<p>Movie Year: <?php echo $row['movies_year'];?></p>
 			<img src="images/<?php echo $row['movies_cover'];?>" alt="">
 		</div>
 	<?php endwhile;?>

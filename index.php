@@ -20,25 +20,16 @@ if(isset($_GET['filter'])){
 	<title>Movie Review</title>
 </head>
 <body>
-	<header>
-		<h1>Header</h1>
-		<nav>
-			<ul>
-				<li><a href="index.php?filter=action">Action</a></li>
-				<li><a href="index.php?filter=comedy">Comedy</a></li>
-			</ul>
-		</nav>
-	</header>
+	<?php include('templates/header.php');?>
 
-<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
+	<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
 		<div>
 			<h2><?php echo $row['movies_title'];?></h2>
 			<p><?php echo $row['movies_year'];?></p>
 			<img src="images/<?php echo $row['movies_cover'];?>" alt="">
+			<a href="details.php?id=<?php echo $row['movies_id'];?>">See Details</a>
 		</div>
 	<?php endwhile;?>
-	<footer>
-		<p>This is a footer Copyright - 2019</p>
-	</footer>
+	<?php include('templates/footer.php');?>
 </body>
 </html>

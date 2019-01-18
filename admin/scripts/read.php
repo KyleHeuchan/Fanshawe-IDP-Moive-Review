@@ -35,8 +35,16 @@ function filterResults($tbl,$tbl_2,$tbl_3,$col,$col_2,$col_3,$filter){
 	}
 }
 
-function getSingle($tbl,$col,$id){
-	//TODO:finish the function like others
-	// 4:10 pm
+function getSingle($tbl,$col,$value){
+	include ('connect.php');
 
+	$query = 'SELECT * FROM '.$tbl.' WHERE '.$col.'='.$value;
+
+	$runQuery = $pdo->query($query);
+	if($runQuery){
+		return $runQuery;
+	}else{
+		$error = 'There was a problem';
+		return $error;
+	}
 }

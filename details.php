@@ -17,15 +17,7 @@ if(isset($_GET['id'])){
 	<title>Movie Details</title>
 </head>
 <body>
-	<header>
-		<h1>Header</h1>
-		<nav>
-			<ul>
-				<li><a href="index.php?filter=action">Action</a></li>
-				<li><a href="index.php?filter=comedy">Comedy</a></li>
-			</ul>
-		</nav>
-	</header>
+	<?php include('templates/header.php');?>
 
 	<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
 		<div>
@@ -34,8 +26,6 @@ if(isset($_GET['id'])){
 			<img src="images/<?php echo $row['movies_cover'];?>" alt="">
 		</div>
 	<?php endwhile;?>
-	<footer>
-		<p>This is a footer Copyright - 2019</p>
-	</footer>
+	<?php include('templates/footer.php');?>
 </body>
 </html>
